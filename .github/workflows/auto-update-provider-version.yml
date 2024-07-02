@@ -1,3 +1,4 @@
+name: Update Provider Version
 on:
   repository_dispatch:
     types: [webhook]
