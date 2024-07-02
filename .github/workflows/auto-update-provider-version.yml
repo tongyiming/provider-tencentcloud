@@ -10,7 +10,8 @@ jobs:
         with:
           go-version: '1.20'
       - name: update-code
-        id: update-code
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           version=`curl https://api.github.com/repos/tencentcloudstack/terraform-provider-tencentcloud/releases/latest --header 'Accept: application/vnd.github+json' --header 'Authorization: Bearer ${{secrets.GITHUB_TOKEN}}' | jq .name | tr -d '"' | tr -d 'v'`
           echo "version=$version" >> "$GITHUB_OUTPUT"
@@ -28,7 +29,7 @@ jobs:
           # git add .
           # git commit -m "update terraform version"
           # git push origin feat/update-to-${version}
-          gh pr create -B main -H feat/update-to-${{ steps.update-code.outputs.version }} --title "update terraform provider" --body "update terraform provider version to ${{ steps.update-code.outputs.version }}"
+          gh pr create -B main -H feat/update-to-${version} --title "update terraform provider" --body "update terraform provider version to ${version}"
       # - name: create-pull-request
       #   uses: peter-evans/create-pull-request@v6
       #   with:
