@@ -37,7 +37,7 @@ jobs:
       #     base: main
       #     assignees: ${{ github.actor }}
       - name: create pull request
-        run: gh pr create -B main -H feat/update-to-${{ steps.update-code.outputs.version }} --title update terraform provider version to ${{ steps.update-code.outputs.version }}
+        run: gh pr create -B main -H feat/update-to-${{ steps.update-code.outputs.version }} --title "update terraform provider version to ${{ steps.update-code.outputs.version }}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
