@@ -28,6 +28,7 @@ jobs:
           # git add .
           # git commit -m "update terraform version"
           # git push origin feat/update-to-${version}
+          gh pr create -B main -H feat/update-to-${{ steps.update-code.outputs.version }} --title "update terraform provider" --body "update terraform provider version to ${{ steps.update-code.outputs.version }}"
       # - name: create-pull-request
       #   uses: peter-evans/create-pull-request@v6
       #   with:
@@ -36,10 +37,10 @@ jobs:
       #     branch: feat/update-to-${{ steps.update-code.outputs.version }}
       #     base: main
       #     assignees: ${{ github.actor }}
-      - name: create pull request
-        run: |
-          cd provider-tencentcloud
-          gh pr create -B main -H feat/update-to-${{ steps.update-code.outputs.version }} --title "update terraform provider" --body "update terraform provider version to ${{ steps.update-code.outputs.version }}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: create pull request
+      #   run: |
+      #     cd provider-tencentcloud
+      #     gh pr create -B main -H feat/update-to-${{ steps.update-code.outputs.version }} --title "update terraform provider" --body "update terraform provider version to ${{ steps.update-code.outputs.version }}"
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
