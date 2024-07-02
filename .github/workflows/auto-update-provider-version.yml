@@ -18,24 +18,15 @@ jobs:
           cd provider-tencentcloud
           git config --global user.email "${{ secrets.EMAIL }}"
           git config --global user.name "${{ secrets.USERNAME }}"
-          # git checkout -b "feat/update-to-${version}"
-          # line=`cat Makefile| grep -n "export TERRAFORM_PROVIDER_VERSION" | awk -F ':' '{print $1}'`
-          # sed -i "${line}c export TERRAFORM_PROVIDER_VERSION ?= ${version}" Makefile
-          # git diff
-          # go install golang.org/x/tools/cmd/goimports
-          # go mod tidy
-          # make generate
-          # git add .
-          # git commit -m "update terraform version"
-          # git push origin feat/update-to-${version}
-      # - name: create-pull-request
-      #   uses: peter-evans/create-pull-request@v6
-      #   with:
-      #     commit-message: update terraform version
-      #     title: 'feat: update terraform provider version to ${{ steps.update-code.outputs.version }}'
-      #     branch: feat/update-to-${{ steps.update-code.outputs.version }}
-      #     base: main
-      #     assignees: ${{ github.actor }}
+          git checkout -b "feat/update-to-${version}"
+          line=`cat Makefile| grep -n "export TERRAFORM_PROVIDER_VERSION" | awk -F ':' '{print $1}'`
+          sed -i "${line}c export TERRAFORM_PROVIDER_VERSION ?= ${version}" Makefile
+          go install golang.org/x/tools/cmd/goimports
+          go mod tidy
+          make generate
+          git add .
+          git commit -m "update terraform version"
+          git push origin feat/update-to-${version}
       - name: create pull request
         run: |
           cd provider-tencentcloud
