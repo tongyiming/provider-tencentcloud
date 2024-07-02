@@ -34,4 +34,5 @@ jobs:
           commit-message: update terraform version
           title: 'feat: update terraform provider version to ${{ steps.update-code.outputs.version }}'
           branch: feat/update-to-${{ steps.update-code.outputs.version }}
+          base: main
           
