@@ -18,6 +18,7 @@ jobs:
           VNUM1=${VERSION_BITS[0]}
           VNUM2=${VERSION_BITS[1]}
           VNUM3=${VERSION_BITS[2]}
+          VNUM3=$((VNUM3+1))
           NEXT_TAG="v$VNUM1.$VNUM2.$VNUM3"
           echo "NEXT_TAG=$NEXT_TAG" >> "$GITHUB_OUTPUT"
 
